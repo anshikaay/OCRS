@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="dashboard-container">
+
+    <div class="sidebar">
+        <h2>Admin</h2>
+        <ul>
+            <li><a href="{{ url_for('admin_dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('add_course') }}" class="btn">
+    Add Course</a></li>
+          <li>
+<a href="{{ url_for('admin_reservations') }}">
+Reservations
+</a>
+</li>
+                 <li><a href="{{ url_for('admin_view_courses') }}">View Courses</a></li>
+            <li><a href="view_students.html">View Students</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <h1>Admin Dashboard</h1>
+
+     <div class="stats">
+    <div class="card">
+        <h3>Total Students</h3>
+        <p>{{ total_students }}</p>
+    </div>
+
+    <div class="card">
+        <h3>Total Courses</h3>
+        <p>{{ total_courses }}</p>
+    </div>
+
+    <div class="card">
+        <h3>Total Reservations</h3>
+        <p>{{ total_reservations }}</p>
+    </div>
+</div>
+<h2>Course Enrollment</h2>
+
+<table>
+    <tr>
+        <th>Course Name</th>
+        <th>Capacity</th>
+        <th>Enrolled</th>
+        <th>Remaining</th>
+    </tr>
+
+    {% for course in course_data %}
+    <tr>
+        <td>{{ course['name'] }}</td>
+        
+        <td>{{ course['enrolled'] }}</td>
+        
+    </tr>
+    {% endfor %}
+</table>
+<h2>Enrollment Chart</h2>
+<canvas id="enrollmentChart"></canvas>
+
+    </div>
+
+</div>
+<h2>Pending Reservations</h2>
+
+<table>
+    <tr>
+        <th>Student</th>
+        <th>Course</th>
+        <th>Action</th>
+    </tr>
+
+    {% for res in pending_reservations %}
+    <tr>
+        <td>{{ res.student_name }}</td>
+        <td>{{ res.course_name }}</td>
+        <td>
+            <a href="{{ url_for('approve', res_id=res.id) }}" class="btn-reg">Approve</a>
+            |
+            <a href="{{ url_for('reject', res_id=res.id) }}" class="btn-reg">Reject</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<script id="courseData" type="application/json">
+    {{ course_data | tojson }}
+</script>
+<script>
+    const courseData = JSON.parse(
+        document.getElementById("courseData").textContent
+    );
+
+    const courseNames = courseData.map(c => c.name);
+    const enrolledCounts = courseData.map(c => c.enrolled);
+
+    const ctx = document.getElementById('enrollmentChart');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: courseNames,
+            datasets: [{
+                label: 'Enrolled Students',
+                data: enrolledCounts,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

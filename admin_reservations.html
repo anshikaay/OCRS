@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Course</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<div class="dashboard-container">
+<!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Admin</h2>
+        <ul>
+            <li><a href="{{ url_for('admin_dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('add_course') }}">Add Course</a></li>
+            <li><a href="{{ url_for('admin_view_courses') }}">View Courses</a></li>
+            <li><a href="view_students.html">View Students</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+    
+<h1>Course Reservations</h1>
+
+<table border="1">
+<tr>
+<th>Student</th>
+<th>Course</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+
+{% for r in reservations %}
+<tr>
+<td>{{ r.student_name }}</td>
+<td>{{ r.course_name }}</td>
+<td>{{ r.status }}</td>
+
+<td>
+
+<a href="{{ url_for('approve', res_id=res.id) }}">
+Approve
+</a>
+
+<a href="{{ url_for('reject', res_id=res.id) }}">
+Reject
+</a>
+
+</td>
+</tr>
+{% endfor %}
+
+</table>
+</div>
+</div>
+</body>
+</html>

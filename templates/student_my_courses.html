@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<div class="dashboard-container">
+
+    <div class="sidebar">
+        <h2>Student</h2>
+        <ul>
+            <li><a href="{{ url_for('student_dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('student_view_courses') }}">Register Course</a></li>
+            <li><a href="{{ url_for('student_my_courses') }}">My Courses</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <h1>Welcome, Student</h1>
+
+        <div class="stats">
+            <div class="card">
+                <h3>Registered Courses</h3>
+                <p>3</p>
+            </div>
+
+            <div class="card">
+                <h3>Total Credits</h3>
+                <p>12</p>
+            </div>
+        </div>
+        
+<h1>My Registered Courses</h1>
+
+<div class="table-wrapper">
+    <table>
+        <tr>
+            <th>Course</th>
+            <th>Code</th>
+            <th>Credits</th>
+            <th>Status</th>
+        </tr>
+        <tr>
+            <td>Operating Systems</td>
+            <td>CSE301</td>
+            <td>4</td>
+            <td>Enrolled</td>
+        </tr>
+    </table>
+</div>
+    </div>
+</div>
+</div>
+
+</body>
+</html>
+
+

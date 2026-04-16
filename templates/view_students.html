@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Courses</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<div class="dashboard-container">
+
+    <div class="sidebar">
+        <h2>Admin</h2>
+        <ul>
+            <li><a href="{{ url_for('admin_dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('add_course') }}">Add Course</a></li>
+            <li><a href="{{ url_for('student_view_courses') }}">View Courses</a></li>
+            <li><a href="view_students.html">View Students</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <h1>All Courses</h1>
+        <h1>Registered Students</h1>
+
+<div class="table-wrapper">
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Branch</th>
+            <th>Semester</th>
+        </tr>
+        <tr>
+            <td>Anshika</td>
+            <td>anshika@email.com</td>
+            <td>CSE</td>
+            <td>4</td>
+        </tr>
+    </table>
+</div>
+
+        <div class="table-wrapper">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Code</th>
+                    <th>Credits</th>
+                    <th>Instructor</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <td>Data Structures</td>
+                    <td>CSE201</td>
+                    <td>4</td>
+                    <td>Dr. Sharma</td>
+                    <td>
+                        <a href="admin_edit_course.html" class="primary-btn">Edit</a>
+                        <button class="danger-btn">Delete</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

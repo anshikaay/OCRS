@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Course Reservation System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<nav class="navbar">
+    <div class="nav-left">
+        <span class="logo">CourseReg</span>
+    </div>
+
+    <div class="nav-center">
+        <a href="{{ url_for('admin_login') }}">Admin</a>
+        <a href="#">Time table</a>
+        <a href="{{ url_for('student_login') }}">Student</a>
+        <a href="{{ url_for('admin_view_courses') }}">Courses</a>
+        <a href="#">Resources</a>
+    </div>
+<div class="nav-glow"></div>
+
+    <div class="nav-right">
+        <button class="download-btn">Login</button>
+    </div>
+</nav>
+<section class="hero">
+
+    <p class="hero-tag">Online Course Reservation System</p>
+
+    <h1>
+        Experience <span style="color:rgb(152, 110, 146);">smarter</span> course <br>
+        <span style="color:rgb(152, 110, 146);">reservation</span> for modern students
+    </h1>
+
+    <div class="hero-actions">
+     <a href="{{ url_for('admin_login') }}" class="primary-btn">
+    Admin
+</a>
+
+<a href="{{ url_for('student_login') }}" class="secondary-btn">
+    Student
+</a>
+       
+    </div>
+
+</section>
+
+
+</body>
+
+</html>

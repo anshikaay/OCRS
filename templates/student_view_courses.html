@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Courses</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Student</h2>
+        <ul>
+            <li><a href="{{ url_for('student_dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('student_view_courses') }}">View Courses</a></li>
+            <li><a href="view_students.html">View Students</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>Available Courses</h1>
+
+        <div class="table-wrapper">
+<table>
+    <tr>
+        <th>Category</th>
+        <th>Name</th>
+        <th>Code</th>
+        <th>Credits</th>
+        <th>Instructor</th>
+        <th>Semester</th>
+        <th>Action</th>
+    </tr>
+
+   {% for course in courses %}
+<tr>
+    <td>{{ course['category_name'] }}</td>
+    <td>{{ course['name'] }}</td>
+    <td>{{ course['code'] }}</td>
+    <td>{{ course['credits'] }}</td>
+    <td>{{ course['instructor'] }}</td>
+    <td>{{ course['semester'] }}</td>
+    
+
+    <td>
+  
+
+{% if session.get('student_id') %}
+    <a href="{{ url_for('register_course', course_id=course['id']) }}" class="btn-reg">Register</a>
+{% endif %}
+    </td>
+</tr>
+{% endfor %}
+   
+</table>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
